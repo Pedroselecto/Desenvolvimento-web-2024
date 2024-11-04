@@ -3,7 +3,24 @@ const container = document.getElementById("container");
 const pega_json = async (caminho) => {
     const resposta = await fetch(caminho)
     const dados = await resposta.json()
-    return dados
+    return dados;
+}
+
+const acha_cookie = (chave) => {
+    const linha_de_cookies = document.cookie.split(";");
+    const procurado = lista_de_cookies.find(
+        (e) => e.startsWith(`${chave}=`));
+    return procurado.split
+}
+
+const manipulaClick = (e) => {
+    const id = e.currentTarget.dataset.id;
+    const nome = e.currentTarget.dataset.nome;
+
+    document.cookie = `id=${id}`;
+    document.cookie = `nome=${nome}`;
+
+    window.location = `detalhes.html?id=${id}`;
 }
 
 const montaCard = (atleta) => {
@@ -12,6 +29,7 @@ const montaCard = (atleta) => {
     const imagem = document.createElement("img");
     const descri = document.createElement("p");
     const link = document.createElement("a");
+    const span_id = document.createElement("span")
 
     nome.innerHTML = atleta.nome;
     cartao.appendChild(nome);
@@ -22,9 +40,13 @@ const montaCard = (atleta) => {
     descri.innerHTML = atleta.detalhes
     cartao.appendChild(descri);
 
-    link.innerHTML = "Saiba mais..."
+    /*link.innerHTML = "Saiba mais..."
     link.href = `detalhes.html?id=${atleta.id}&altura=${atleta.altura}`
-    cartao.appendChild(link);
+    cartao.appendChild(link);*/
+
+    cartao.dataset.id = atleta.id;
+    cartao.dataset.nome = atleta.nome;
+    cartao.dataset.nacimento = atleta.nascimento;
 
     container.appendChild(cartao);
 }

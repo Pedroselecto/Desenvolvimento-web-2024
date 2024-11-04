@@ -5,7 +5,7 @@ const id = params.get("id");
 const pega_json = async (caminho) => {
     const resposta = await fetch(caminho)
     const dados = await resposta.json()
-    return dados
+    return dados;
 }
 
 pega_json(`https://botafogo-atletas.mange.li/2024-1/${id}`).then(
@@ -23,4 +23,8 @@ pega_json(`https://botafogo-atletas.mange.li/2024-1/${id}`).then(
 
     
     }
-)
+);
+
+const cookie = document.cookie;
+
+console.log(cookie)
